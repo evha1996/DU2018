@@ -1,0 +1,26 @@
+Sub stockData2015()
+
+stock_vol_subtotal = 0
+current_vol_row = 2
+
+  For Row = 2 To 760192
+    current_tick = Cells(Row, 1).Value
+    next_tick = Cells(Row + 1, 1).Value
+    current_vol = Cells(Row, 7).Value
+  
+    If current_tick = next_tick Then
+      stock_vol_subtotal = stock_vol_subtotal + current_vol
+      Cells(Row, 8).Value = stock_vol_subtotal
+    Else
+      stock_vol_subtotal = stock_vol_subtotal + current_vol
+      Cells(Row, 8).Value = stock_vol_subtotal
+
+      Cells(current_vol_row, 9).Value = current_tick
+      Cells(current_vol_row, 10).Value = stock_vol_subtotal
+      current_vol_row = current_vol_row + 1
+      stock_vol_subtotal = 0
+    End If
+
+  Next Row
+
+End Sub
